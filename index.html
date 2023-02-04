@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
+        integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Weight Form</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <nav>
+            <ul>
+                <li>
+                    <h2 id="mainCal"></h2>
+                    <h3>CALORIES</h3>
+                </li>
+                <li>
+                    <h2 id="mainProt"></h2>
+                    <h3>PROTEIN</h3>
+                </li>
+                <li>
+                    <h2 id="mainCarbs"></h2>
+                    <h3>CARBS</h3>
+                </li>
+                <li>
+                    <h2 id="mainFat"></h2>
+                    <h3>FAT</h3>
+                </li>
+                <li>
+                    <h2 id="mainFiber"></h2>
+                    <h3>FIBER</h3>
+                </li>
+            </ul>
+        </nav>
+        <div>
+            <section id="wghtForm">
+                <form action="">
+                    <label for="wght">Enter Weight:</label>
+                    <input type="number" id="weight" name="wght" min="0" step="0.01">
+                    <div>
+                        <label for="unit">kgs:</label>
+                        <input type="radio" name="unit" value="kgs" checked="checked">
+                        <label for="unit">lbs:</label>
+                        <input type="radio" name="unit" value="lbs">
+                    </div>
+                    <div>
+                        <label for="date">Date:</label>
+                        <input id="wghtDate" type="date" required>
+                    </div>
+                    <input type="submit">
+                </form>
+                <div class="tableCont">
+                    <table>
+                        <thead>
+                            <th>Date</th>
+                            <th>Lbs</th>
+                            <th>Kgs</th>
+                        </thead>
+                        <tbody id="tContent">
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </section>
+            <canvas id="myChart"></canvas>
+        </div>
+        <!-- <div class="break"></div> -->
+        <section id="dietForm">
+            <!-- <canvas id="myBMI"></canvas> -->
+            <form action="">
+                <div>
+                    <label for="date">Date:</label>
+                    <input id="dietDate" type="date" required>
+                </div>
+                <div>
+                    <label for="food">Food Name:</label>
+                    <input type="text" id="food" name="food" value="Food Name">
+                </div>
+                <div>
+                    <label for="carbs">Carbs</label>
+                    <input type="number" id="carbs" name="carbs" value="0" min="0" step="0.01">
+                </div>
+                <div>
+                    <label for="protein">Protein</label>
+                    <input type="number" id="protein" name="protein" value="0" min="0" step="0.01">
+                </div>
+                <div>
+                    <label for="fat">Fat</label>
+                    <input type="number" id="fat" name="fat" value="0" min="0" step="0.01">
+                </div>
+                <div>
+                    <label for="fiber">Fiber:</label>
+                    <input type="fiber" id="fiber" name="fiber" value="0" min="0" step="0.01">
+                </div>
+                <input type="submit">
+            </form>
+            <div class="tableCont">
+                <table>
+                    <thead>
+                        <th>Date</th>
+                        <th>Food Name</th>
+                        <th>Calories</th>
+                        <th>Protein</th>
+                        <th>Fat</th>
+                        <th>Carbs</th>
+                        <th>Fiber</th>
+                    </thead>
+                    <tbody id="dietContent">
+                    </tbody>
+                </table>
+            </div>
+            <h2>BMI</h2>
+            <div id="bmiBar">
+                <hr class="hr">
+                <hr class="hr">
+                <div class="circle"></div>
+            </div>
+        </section>
+    </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Weight Chart',
+                    data: [],
+                    backgroundColor: [
+                        'rgba(44, 135, 117, 1)',
+                    ],
+                    borderColor: [
+                        '#0b3142',
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        suggestedMin: 140,
+                        suggestedMax: 200
+                    }
+                }
+            }
+        });
+
+
+        // const labels = ['BMI'];
+        // const data = {
+        //     labels: labels,
+        //     datasets: [{
+        //         label: 'My First Dataset',
+        //         data: [65],
+        //         backgroundColor: [
+        //             'rgba(255, 99, 132, 0.2)',
+        //         ],
+        //         borderColor: [
+        //             'rgb(255, 99, 132)',
+        //         ],
+        //         borderWidth: 1
+        //     }]
+        // };
+        // const config = {
+        //     type: 'bar',
+        //     data: data,
+        //     options: {
+        //         indexAxis: 'y',
+        //         scales: {
+        //             y: {
+        //                 beginAtZero: false
+        //             }
+        //         }
+        //     },
+        // };
+
+        // const myBMI = new Chart(document.getElementById('myBMI').getContext('2d'), config);
+    </script>
+</body>
+
+</html>
