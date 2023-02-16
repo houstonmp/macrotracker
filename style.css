@@ -239,6 +239,50 @@ background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(185,192,0,1) 24%, rg
     left: 60px;
 }
 
+#modalBtn {
+    position: fixed;
+    border-radius: 50%;
+    width: 3em;
+    height: 3em;
+    right: 30px;
+    bottom: 30px;
+    background-color: black;
+    border: 3px solid grey;
+    display: flex;
+    cursor: pointer;
+    transition: all .24s;
+    z-index: 11;
+}
+
+#modalBtn img{
+    flex: 1 1 0;
+}
+#modalBtn:active{
+    transform: rotate(360deg);
+}
+
+aside {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    /*width: 50%;*/
+    /*height: 100vh;*/
+    /*display: flex;*/
+    z-index: 10;
+}
+
+aside iframe {
+    /*flex-basis: 50%;*/
+    width: 100vw;
+    height: 40vh;
+    /* justify-content: center; */
+    /*align-items: center;*/
+}
+
+.visible {
+    display: none;
+}
+
 /* .move{
     transform: translate(0, 40px);
 } */

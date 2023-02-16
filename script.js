@@ -5,6 +5,10 @@ const table = document.querySelector("#tContent");
 const dietCont = document.querySelector("#dietContent");
 const TODAY = new Date().toISOString().split('T')[0];
 
+document.querySelector("#modalBtn").addEventListener("click",()=>{
+    document.querySelector("#modal").classList.toggle("visible");
+});
+
 function wghtObject(date = null, lbs = null, kgs = null, food = []) {
     this.date = date;
     this.lbs = lbs;
